@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require("cors")
 const incomeRoutes = require("./router/transactions")
 
 
@@ -11,6 +12,8 @@ const app = express()
 
 //middlewares
 app.use(express.json())
+app.use(cors())
+
 
 // log of all the actions
 app.use((req,res,next) => {

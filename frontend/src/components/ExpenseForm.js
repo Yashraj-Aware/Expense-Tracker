@@ -2,9 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useIncomesContext } from '../hooks/useIncomesContext'
 
-
-const IncomeForm = () => {
-
+const ExpenseForm = () => {
     const { dispatch } = useIncomesContext()
 
     const [amount , setAmount] = useState("")
@@ -17,7 +15,7 @@ const IncomeForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const category = "income"
+        const category = "expense"
         
         const income = {amount , date , description , category }
 
@@ -38,7 +36,7 @@ const IncomeForm = () => {
 
         if(response.ok)
         {
-            console.log('new income added');
+            console.log('new expense added');
             setAmount("")
             setDate("")
             setDescription("")
@@ -51,9 +49,9 @@ const IncomeForm = () => {
 
   return (
     <form className="create" onSubmit = { handleSubmit }>
-        <h3>Add new Income</h3>
+        <h3>Add new Expense</h3>
 
-        <label >Income Description</label>
+        <label >Expense Description</label>
         <input 
             type="text"
             required
@@ -83,4 +81,4 @@ const IncomeForm = () => {
   )
 }
 
-export default IncomeForm
+export default ExpenseForm

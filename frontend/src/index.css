@@ -69,6 +69,38 @@ header a {
   color: #333;
 }
 
+/* expense styling  */
+
+.expense-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  border-left: 5px solid #e7195a;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+.expense-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--error);
+}
+.expense-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+.expense-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+
 /* form styling  */
 
 label, input {
@@ -107,4 +139,17 @@ input.error {
 .trash:hover {
   color: var(--error);
   background-color: white;
+}
+
+
+/* total styling  */
+.total-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color:white;
+}
+.total-contents span {
+  margin: 10px;
 }

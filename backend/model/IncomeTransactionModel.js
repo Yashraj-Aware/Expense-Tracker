@@ -17,6 +17,10 @@ const IncomeTransactionSchema = new Schema({
         type : "String" , 
         required : [true , "Please enter the date of transaction"]
     } ,
+    category : {
+        type : "String" ,
+        required : true
+    }
 
 
 }, { timestamp: true }) // adds ts when created or updated

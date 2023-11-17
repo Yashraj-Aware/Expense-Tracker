@@ -20,10 +20,10 @@ const getAllTransactions = async (req , res) => {
 
 const addTransaction = async (req , res) => {
 
-    const {amount , description , date } = req.body
+    const {amount , description , date , category } = req.body
 
     try {
-        const incomeTransaction = await Income.create({amount , description , date})
+        const incomeTransaction = await Income.create({amount , description , date , category})
 
         return res.status(200).json(incomeTransaction)
 

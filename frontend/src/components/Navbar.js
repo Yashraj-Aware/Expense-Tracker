@@ -11,12 +11,18 @@ const Navbar = () => {
             <Link to="/">
                 <h1>Expense Tracker</h1>
             </Link>
+            <Link to = "/income">
+              <h4>Income</h4>
+            </Link>
+            <Link to = "/expense">
+              <h4>Expense</h4>
+            </Link>
 
             <Link to = "/">
-              <h4>Signup</h4>
+              <h4>Login</h4>
             </Link>
             <Link to = "/">
-              <h4>Login</h4>
+              <h4>Signup</h4>
             </Link>
         </div>
     </header>

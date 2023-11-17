@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import { Nav } from 'react-bootstrap'
+// import { Nav } from 'react-bootstrap'
 
 
 
@@ -8,8 +8,11 @@ const Navbar = () => {
   return (
     <header>
         <div className="container">
-            <Link to="/">
+            <Link to="/dashboard">
                 <h1>Expense Tracker</h1>
+            </Link>
+            <Link to = "/dashboard">
+              <h4>Dashboard</h4>
             </Link>
             <Link to = "/income">
               <h4>Income</h4>
@@ -18,12 +21,10 @@ const Navbar = () => {
               <h4>Expense</h4>
             </Link>
 
-            <Link to = "/">
+            <Link to = "/login">
               <h4>Login</h4>
             </Link>
-            <Link to = "/">
-              <h4>Signup</h4>
-            </Link>
+            
         </div>
     </header>
 

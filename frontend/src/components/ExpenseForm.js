@@ -69,7 +69,7 @@ const ExpenseForm = () => {
 
 <label >Date</label>
         <input 
-            type="text"
+            type="date"
             required
             onChange={(e) => {setDate(e.target.value)}}
             value = {date}

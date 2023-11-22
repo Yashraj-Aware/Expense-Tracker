@@ -5,12 +5,16 @@ import { Link } from "react-router-dom"
 
 
 const Navbar = () => {
+
+
+
   return (
     <header>
-        <div className="container">
-            <Link to="/dashboard">
+      <div className="container">
+      <Link to="/">
                 <h1>Expense Tracker</h1>
             </Link>
+         
             <Link to = "/dashboard">
               <h4>Dashboard</h4>
             </Link>
@@ -24,11 +28,17 @@ const Navbar = () => {
             <Link to = "/login">
               <h4>Login</h4>
             </Link>
-            
-        </div>
+      </div>
+        
+
+           
+          
+        
     </header>
 
   )
 }
 
 export default Navbar
+
+

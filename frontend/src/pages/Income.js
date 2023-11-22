@@ -51,7 +51,7 @@ const Income = () => {
 </div>
     <div className='home'>
       
-      <div className="workouts">
+      <div className="incomes">
 
         {incomes && incomes.filter((income) => income.category === "income").map(filteredIncome => (
             

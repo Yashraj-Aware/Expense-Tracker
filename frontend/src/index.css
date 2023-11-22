@@ -23,6 +23,7 @@ header .container {
   align-items: center;
   justify-content: space-between;
 }
+
 header a {
   color: #333;
   text-decoration: none;
@@ -153,3 +154,51 @@ input.error {
 .total-contents span {
   margin: 10px;
 }
+
+
+/* dashboard styling for the graphs*/
+
+
+/* Responsiveness */
+/* Add this at the end of your existing CSS */
+
+/* Responsive styling for home pages */
+@media only screen and (max-width: 768px) {
+  .home {
+    grid-template-columns: 1fr; /* Change to a single column layout */
+    gap: 20px; /* Adjust the gap between columns */
+  }
+
+  .incomes ,
+  .expenses {
+    order: 2; /* Move the IncomeDetails below the IncomeForm on mobile */
+  }
+}
+
+/* Responsive styling for income and expense details */
+@media only screen and (max-width: 768px) {
+  .income-details,
+  .expense-details {
+    margin: 20px 0; /* Adjust margin for better spacing on smaller screens */
+  }
+}
+
+/* Responsive styling for total section */
+@media only screen and (max-width: 768px) {
+  .total-contents {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+  }
+}
+
+/* Responsive styling for header */
+@media only screen and (max-width: 768px) {
+  header .container {
+    flex-direction: column; /* Stack navigation items vertically on smaller screens */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+
+}
+
+
+

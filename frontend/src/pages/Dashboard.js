@@ -3,7 +3,7 @@ import CourseLineChart from '../charts/CourseLineChart'
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className='dashboard'>
       <CourseLineChart />
     </div>
   )

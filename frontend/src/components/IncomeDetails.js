@@ -21,6 +21,7 @@ const IncomeDetails = ({ income }) => {
 
 
   return (
+    
     <div className={income.category === "expense" ? 'expense-details' : 'income-details'}>
       <h4>{income.description}</h4>
       <p><strong>Amount:</strong> {income.amount}</p>

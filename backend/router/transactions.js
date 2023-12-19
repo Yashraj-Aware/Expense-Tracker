@@ -4,7 +4,8 @@ const {
     getAllTransactions,
     addTransaction,
     deleteTransaction,
-    getTransaction
+    getTransaction,
+    
  } = require("../controller/IncomeTransactionController")
 
 const router = express.Router()
@@ -24,6 +25,9 @@ router.post("/" , addTransaction)
 
 //DELETE a transaction
 router.delete("/:id", deleteTransaction)
+
+//GET a limited trnasction
+
 
 
 

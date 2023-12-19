@@ -14,6 +14,10 @@ export const incomesReducer = (state , action) => {
         case 'DELETE_INCOMES':
             return { incomes: state.incomes.filter((income) => income._id !== action.payload._id)}
             
+        case 'GET_LATEST_FIVE_INCOMES':
+            const latestFiveIncomes = state.incomes.slice(0, 5);
+            return { incomes: latestFiveIncomes };
+            
         default :
             return state
     }

@@ -2,10 +2,6 @@ import React, {useEffect, useState} from 'react'
 
 import {  ResponsiveContainer,BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid} from "recharts";
 
-
-  // let data =[]
-
-
   const CourseLineChart = () => {
 
     const [data , setData] = useState([])
@@ -50,11 +46,6 @@ import {  ResponsiveContainer,BarChart, Bar, XAxis, YAxis, Tooltip, Legend, Cart
         if(existingData)
         {
             existingData.expense += edata.amount
-
-            // if(adjacentIncome)
-            //   {
-            //       existingData.income += adjacentIncome.amount
-            //   }
 
             existingData.income += adjacentIncome ? adjacentIncome.amount : 0
 

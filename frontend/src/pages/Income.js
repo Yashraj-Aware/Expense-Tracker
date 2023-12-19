@@ -9,13 +9,7 @@ import IncomeForm from '../components/IncomeForm'
 
 const Income = () => {
 
-
-
-  // const [incomes , setIncomes] = useState(null)
-
   const {incomes , dispatch} = useIncomesContext()
-
-    // const arr = ["mayu" , "ruchu"]
 
     // to retrieve the data when component is rendered
 

@@ -1,69 +1,61 @@
-import React from 'react'
-import {useEffect  } from "react"
-import { useIncomesContext } from "../hooks/useIncomesContext"
+import React from "react";
+import { useEffect } from "react";
+import { useIncomesContext } from "../hooks/useIncomesContext";
 // importing components
-import IncomeDetails from '../components/IncomeDetails'
-import IncomeForm from '../components/IncomeForm'
-
-
+import IncomeDetails from "../components/IncomeDetails";
+import IncomeForm from "../components/IncomeForm";
 
 const Income = () => {
+  const { incomes, dispatch } = useIncomesContext();
 
-  const {incomes , dispatch} = useIncomesContext()
+  // to retrieve the data when component is rendered
 
-    // to retrieve the data when component is rendered
+  let totamount = 0;
 
-    let totamount = 0
+  incomes &&
+    incomes
+      .filter((income) => income.category === "income")
+      .map((filter) => (totamount += filter.amount));
 
-    incomes && incomes.filter((income) => income.category === "income").map(filter => (totamount+=filter.amount))
+  // console.log(amounttot);
 
-    // console.log(amounttot);
+  useEffect(() => {
+    const fetchIncomes = async () => {
+      const response = await fetch("http://localhost:4000/api/income");
 
-    useEffect(() => {
-        const fetchIncomes = async () => {
+      // json() requires await as it returns promise
+      const json = await response.json();
 
-            const response = await fetch('http://localhost:4000/api/income')
+      if (response.ok) {
+        dispatch({ type: "SET_INCOMES", payload: json });
+      }
+    };
 
-            // json() requires await as it returns promise
-            const json = await response.json()
-
-           
-            if(response.ok)
-            {
-                dispatch({type:'SET_INCOMES' , payload: json })
-            }
-        }
-
-        fetchIncomes()
-    }, [dispatch])
+    fetchIncomes();
+  }, [dispatch]);
   return (
     <div className="total">
-
-<div className="total-contents">
-
-<h1>Total Income: <span style = {{color : '#1aac83'}}>{totamount}</span> </h1>
-</div>
-    <div className='home'>
-      
-      <div className="incomes">
-
-        {incomes && incomes.filter((income) => income.category === "income").map(filteredIncome => (
-            
-            
-            
-
-             <IncomeDetails income = {filteredIncome} key={filteredIncome._id}/>
-
-            
-            
-        ))}
-        
+      <div className="total-contents">
+        <h1>
+          Total Income: <span style={{ color: "#1aac83" }}>{totamount}</span>{" "}
+        </h1>
       </div>
+      <div className="home">
+        <div className="incomes">
+          {incomes &&
+            incomes
+              .filter((income) => income.category === "income")
+              .map((filteredIncome) => (
+                <IncomeDetails
+                  income={filteredIncome}
+                  key={filteredIncome._id}
+                />
+              ))}
+        </div>
         <IncomeForm />
-
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default Income
+export default Income;

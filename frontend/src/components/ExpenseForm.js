@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useIncomesContext } from "../hooks/useIncomesContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ExpenseForm = () => {
   const { dispatch } = useIncomesContext();
+  const { user } = useAuthContext()
 
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
@@ -15,6 +17,10 @@ const ExpenseForm = () => {
     e.preventDefault();
 
     const category = "expense";
+    if(!user)
+    {
+      setError('You must be logged in')
+    }
 
     const income = { amount, date, description, category };
 
@@ -23,6 +29,7 @@ const ExpenseForm = () => {
       body: JSON.stringify(income),
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${user.token}`
       },
     });
 

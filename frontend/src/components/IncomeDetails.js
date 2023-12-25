@@ -1,14 +1,22 @@
 import React from "react";
 import { useIncomesContext } from "../hooks/useIncomesContext";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 const IncomeDetails = ({ income }) => {
   const { dispatch } = useIncomesContext();
+  const { user } = useAuthContext()
 
   const handleClick = async () => {
+    if(!user)
+    {
+      return
+    }
     const response = await fetch(
       "http://localhost:4000/api/income/" + income._id,
       {
         method: "DELETE",
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
       }
     );
 

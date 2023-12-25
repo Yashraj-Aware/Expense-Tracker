@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 import {
   ResponsiveContainer,
   BarChart,
@@ -13,10 +13,15 @@ import {
 
 const CourseLineChart = () => {
   const [data, setData] = useState([]);
+  const {user} = useAuthContext()
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/income");
+        const response = await fetch("http://localhost:4000/api/income",{
+          headers : {
+            'Authorization': `Bearer ${user.token}`
+          }
+        });
 
         // json() requires await as it returns promise
         const json = await response.json();
@@ -30,7 +35,7 @@ const CourseLineChart = () => {
     };
 
     fetchdata();
-  }, []);
+  }, [user]);
 
   const income = data.filter((idata) => idata.category === "income");
   const expense = data.filter((edata) => edata.category === "expense");
@@ -55,6 +60,7 @@ const CourseLineChart = () => {
     return acc;
   }, []);
   console.log("mergedata", mergedData);
+
   mergedData.sort((a, b) => new Date(a.date) - new Date(b.date));
   return (
     <ResponsiveContainer width="70%" aspect={3}>
@@ -70,7 +76,7 @@ const CourseLineChart = () => {
         <Tooltip />
         <Legend />
         <Bar dataKey="expense" fill="red" />
-        <Bar dataKey="income" fill="green" />
+        {/* <Bar dataKey="income" fill="green" /> */}
       </BarChart>
     </ResponsiveContainer>
   );

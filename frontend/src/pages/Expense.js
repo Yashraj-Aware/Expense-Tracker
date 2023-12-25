@@ -4,11 +4,13 @@ import { useIncomesContext } from "../hooks/useIncomesContext"
 // importing components
 import IncomeDetails from '../components/IncomeDetails'
 import ExpenseForm from '../components/ExpenseForm'
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Expense = () => {
 
 
     const {incomes , dispatch} = useIncomesContext()
+    const {user} = useAuthContext()
 
     let totamount = 0
     incomes && incomes.filter((income) => income.category === "expense").map(filteredIncome => (totamount+=filteredIncome.amount))
@@ -17,7 +19,11 @@ const Expense = () => {
     useEffect(() => {
         const fetchIncomes = async () => {
 
-            const response = await fetch('http://localhost:4000/api/income')
+            const response = await fetch('http://localhost:4000/api/income',{
+                headers : {
+                  'Authorization': `Bearer ${user.token}`
+                }
+              })
 
             // json() requires await as it returns promise
             const json = await response.json()
@@ -29,8 +35,12 @@ const Expense = () => {
             }
         }
 
-        fetchIncomes()
-    }, [dispatch])
+        if(user)
+        {
+
+            fetchIncomes()
+        }
+    }, [dispatch, user])
 
   return (
     <div className="total">

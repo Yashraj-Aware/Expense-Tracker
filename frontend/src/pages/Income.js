@@ -4,9 +4,11 @@ import { useIncomesContext } from "../hooks/useIncomesContext";
 // importing components
 import IncomeDetails from "../components/IncomeDetails";
 import IncomeForm from "../components/IncomeForm";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Income = () => {
   const { incomes, dispatch } = useIncomesContext();
+  const {user} = useAuthContext()
 
   // to retrieve the data when component is rendered
 
@@ -21,7 +23,11 @@ const Income = () => {
 
   useEffect(() => {
     const fetchIncomes = async () => {
-      const response = await fetch("http://localhost:4000/api/income");
+      const response = await fetch("http://localhost:4000/api/income", {
+        headers : {
+          'Authorization': `Bearer ${user.token}`
+        }
+      });
 
       // json() requires await as it returns promise
       const json = await response.json();
@@ -31,8 +37,12 @@ const Income = () => {
       }
     };
 
-    fetchIncomes();
-  }, [dispatch]);
+    if(user)
+    {
+
+      fetchIncomes();
+    }
+  }, [dispatch, user]);
   return (
     <div className="total">
       <div className="total-contents">

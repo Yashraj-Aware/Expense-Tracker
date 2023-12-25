@@ -20,6 +20,10 @@ const IncomeTransactionSchema = new Schema({
     category : {
         type : "String" ,
         required : true
+    },
+    user_id: {
+        type: String,
+        required: true
     }
 
 

@@ -1,20 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import { useIncomesContext } from "../hooks/useIncomesContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const IncomeForm = () => {
   const { dispatch } = useIncomesContext();
+  const { user } = useAuthContext()
 
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   // true --> income
-  const [, setError] = useState("");
+  const [error, setError] = useState("");
+  const [emptyFields, setEmptyFields] = useState([])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const category = "income";
+    if(!user)
+    {
+      setError('You must be logged in')
+      return
+    }
 
     const income = { amount, date, description, category };
 
@@ -23,6 +31,7 @@ const IncomeForm = () => {
       body: JSON.stringify(income),
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${user.token}`
       },
     });
 
@@ -37,6 +46,7 @@ const IncomeForm = () => {
       setDate("");
       setDescription("");
       setError("");
+      setEmptyFields([])
       dispatch({ type: "CREATE_INCOMES", payload: json });
     }
   };
@@ -53,6 +63,7 @@ const IncomeForm = () => {
           setDescription(e.target.value);
         }}
         value={description}
+        className={emptyFields.includes('description') ? 'error':''}
       />
 
       <label>Amount </label>
@@ -63,6 +74,7 @@ const IncomeForm = () => {
           setAmount(e.target.value);
         }}
         value={amount}
+        className={emptyFields.includes('amount') ? 'error':''}
       />
 
       <label>Date</label>
@@ -73,9 +85,11 @@ const IncomeForm = () => {
           setDate(e.target.value);
         }}
         value={date}
+        lassName={emptyFields.includes('date') ? 'error':''}
       />
 
       <button>Submit</button>
+      {error && <div className="error">{error}</div>}
     </form>
   );
 };

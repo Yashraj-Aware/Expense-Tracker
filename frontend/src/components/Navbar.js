@@ -20,9 +20,6 @@ const Navbar = () => {
           <h4>Expense</h4>
         </Link>
 
-        <Link to="/login">
-          <h4>Login</h4>
-        </Link>
       </div>
     </header>
   );

@@ -41,7 +41,7 @@ const CourseLineChart = () => {
   const expense = data.filter((edata) => edata.category === "expense");
 
   //merging the data
-  const mergedData = expense.reduce((acc, edata) => {
+   const mergedData = expense.reduce((acc, edata) => {
     const adjacentIncome = income.find((idata) => idata.date === edata.date);
 
     const existingData = acc.find((data) => data.date === edata.date);
@@ -81,5 +81,6 @@ const CourseLineChart = () => {
     </ResponsiveContainer>
   );
 };
+
 
 export default CourseLineChart;
